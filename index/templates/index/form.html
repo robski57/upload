@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<title>Photoapp</title>
+	<meta charset="utf-8" />
+	{% load staticfiles %}
+	<link rel="stylesheet" href="{% static 'index/css/bootstrap.min.css' %}" type = "text/css"/>
+	<meta name="viewport" content = "width=device-width, initial-scale=1.0">
+
+	<style type="text/css">
+		html,
+		body
+		{
+		  height:100%
+		}
+	</style>
+</head>
+
+<body class="body" style="background=color:#f6f6f6">
+	<div class="container-fluid" style="min-height:95%; ">
+		<div class="row">
+			  <div class="col-sm-2">
+				  <br>
+				  <center>
+					<img src="{% static 'index/img/profile.jpg' %}" class="responsive-img" style='max-height:100px;' alt="face">
+				  </center>
+			  </div>
+			  <div class="col-sm-10">
+				  <br>
+				  <center>
+				  <h3>Robert's Photo Gallary</h3>
+
+
+
+				  </center>
+			  </div>
+		</div><hr>
+
+		<div class="row">
+		  <div class="col-sm-2">
+		  <br>
+
+		  <br>
+		   <!-- Great, til you resize. -->
+			<!--<div class="well bs-sidebar affix" id="sidebar" style="background-color:#fff">-->
+			<div class="well bs-sidebar" id="sidebar" style="background-color:#fff">
+			  <ul class="nav nav-pills nav-stacked">
+				<li><a href="#home">Home</a></li>
+				<li><a href="#photo upload">Photo Upload</a></li>
+				<li><a href="#review">Review</a></li>
+			  </ul>
+			</div> <!--well bs-sidebar affix-->
+		  </div> <!--col-sm-2-->
+		  <div class="col-sm-10">
+			<div class='container-fluid'>
+
+        <center>
+          {% block content %}
+          {% endblock %}
+
+				<h3> Photo upload </h3>
+
+        <form method="post" action="../upload/" enctype="multipart/form-data"> {% csrf_token %}
+        <input type="file" name="files" multiple/>
+        <input type="submit" value="Upload"/>
+        </form>
+
+			<br><br>
+      <center>
+      <h4>Review</h4>
+      <head>
+        <title>Review</title>
+
+               <fieldset>
+            <legend>
+              Your details:
+            </legend>
+            <label>
+              Name:
+              <input type="text" name="name" size="30" maxlength="100">
+            </label>
+            <br />
+            <label>
+              Email:
+              <input type="text" name="email" size="30" maxlength="100">
+            </label>
+            <br />
+            <fieldset>
+            <br />
+            <fieldset>
+              <legend>
+                Your Review:
+              </legend>
+              <p>
+                <label for="hear-about">
+                  How did you hear about us?
+                </label>
+                <select name="referrer" id="hear-about">
+                  <option value="google">Google</option>
+                  <option value="google">Friend</option>
+                  <option value="google">Advert</option>
+                  <option value="google">Other</option>
+                </select>
+              </p>
+              <p>
+                Would you visit again?
+                <br />
+                <label>
+                  <input type="radio" name="rating" value="yes" />
+                  Yes
+                </label>
+                <label>
+                  <input type="radio" name="rating" value="no" />
+                  No
+                </label>
+                <label>
+                  <input type="radio" name="rating" value="maybe" />
+                  maybe
+                </label>
+              </p>
+              <p>
+                <label for="comments">
+                  comments:
+                </label>
+                <br />
+                <textarea rows="4" cols="40" id="comments">
+                </textarea>
+              </p>
+              <label>
+                <<input type="checkbox" name="subscribe" checked="checked" />
+                Sign me up for email updates
+              </label>
+              <br />
+              <input type="submit" value="Submit review" />
+            </fieldset>
+          </form>
+        </body>
+    </center>
+
+			</div>
+		  </div>
+		</div>
+	</div>
+	<footer>
+		<div class="container-fluid" style='margin-left:15px'>
+			<p><a href="#" target="blank">Contact</a> | <a href="#" target="blank">LinkedIn</a> | <a href="#" target="blank">Twitter</a> | <a href="#" target="blank">Google+</a></p>
+		</div>
+	</footer>
+
+</body>
+
+</html>
